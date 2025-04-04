@@ -4,8 +4,8 @@ import requests
 # Specify the CSV file name
 csv_filename = "Task 2 - Intern.csv"
 
-def fetch_url_status(url):
-    """Fetch the status code of a given URL with error handling."""
+def fetch_url_status(url, request_func=requests.get):
+    """Fetches the status code of the URL plus specific error handling."""
     try:
         response = requests.get(url, timeout=2)
         return response.status_code
@@ -16,7 +16,7 @@ def fetch_url_status(url):
     except requests.exceptions.RequestException:
         return "General Error"
 
-# Prevent the script from running when imported
+# Prevents the script from automatically running when imported into test file
 if __name__ == "__main__":
     with open(csv_filename, newline='', encoding='utf-8') as csvfile:
         reader = csv.reader(csvfile)
